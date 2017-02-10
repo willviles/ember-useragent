@@ -1,8 +1,15 @@
 # Ember UserAgent
 
-Ember UserAgent is an Ember Addon for UserAgent parsing via UAParser.js.
+Ember UserAgent is an Ember Addon for UserAgent parsing via [UAParser.js](https://github.com/faisalman/ua-parser-js).
 
-The `userAgent` service makes it easy to detect **device type**, **device model**, **browser**, **operating system**, **layout engine** and **CPU architecture** in both browser and Ember Fastboot environments:
+The `userAgent` service works in both browser & Fastboot environments and makes it easy to detect:
+
+* **Device Type**
+* **Device Model**
+* **Browser**
+* **Operating System**
+* **Layout Engine**
+* **CPU architecture**
 
 ## Installation
 
@@ -16,7 +23,7 @@ The shim for UAParser.js uses `app.import`'s new [AMD transformation](https://gi
 
 ## Usage
 
-Ember UserAgent exposes a service, which can be injected into controllers, components and routes. The service exposes all of UAParser's functions, but also adds some properties for quick access.
+Ember UserAgent exposes a service, which can be injected into controllers, components and routes.
 
 ```javascript
 
@@ -29,13 +36,17 @@ export default Ember.Component.extend({
   doSomeSortOfDetection() {
     const userAgent = get(this, 'userAgent');
 
-    // Detect if device is mobile quickly using Ember UserAgent's property
+    // Detect if browser is Chrome
     get(userAgent, 'browser.isChrome');
 
-    // Get all device info...
-    get(userAgent, 'device.info');
+    // Detect if OS is Windows
+    get(userAgent, 'os.isWindows');
 
-    // Which is the same as...
+    // Get all device info
+    get(userAgent, 'device.info');
+    // { model: 'iPhone 7', type: 'mobile', vendor: 'Apple'}
+
+    // Same as above
     userAgent.getDevice();
 
   }
@@ -46,31 +57,16 @@ export default Ember.Component.extend({
 
 ### Service Properties
 
-* browser
-  * info
-  * isChrome
-  * isFirefox
-  * isIE
-  * isSafari
+The service exposes all of UAParser's functions, but also adds some properties for quick access.
 
-* device
-  * info
-  * isConsole
-  * isDesktop
-  * isMobile
-  * isTablet
-
-* engine
-  * info
-  * isWebkit
-
-* os
-  * info
-  * isAndroid
-  * isIOS
-  * isLinux
-  * isMacOS
-  * isWindows
+| browser   | device    | engine   | os        | userAgent |
+|-----------|-----------|----------|-----------|-----------|
+| info      | info      | info     | info      |           |
+| isChrome  | isConsole | isWebKit | isAndroid |           |
+| isFirefox | isDesktop |          | isIOS     |           |
+| isIE      | isMobile  |          | isLinux   |           |
+| isSafari  | isTablet  |          | isMacOS   |           |
+|           |           |          | isWindows |           |
 
 ## Using UAParser.js
 
