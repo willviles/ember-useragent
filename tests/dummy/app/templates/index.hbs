@@ -1,0 +1,14 @@
+<h4>User Agent:</h4>
+{{userAgent.userAgent}}
+
+<h4>Browser:</h4>
+{{userAgent.browser.info.name}}
+
+<h4>Device:</h4>
+{{if userAgent.device.info.type device.device.info.type 'Desktop'}}
+
+<h4>Engine:</h4>
+{{userAgent.engine.info.name}}
+
+<h4>OS:</h4>
+{{userAgent.os.info.name}}
