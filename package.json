@@ -1,9 +1,21 @@
 {
   "name": "ember-useragent",
   "version": "0.0.1",
-  "description": "An Ember addon for Fastboot-enabled userAgent parsing using UAParser.js.",
+  "description": "An Ember addon for Fastboot-enabled userAgent parsing via UAParser.js.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-cli-fastboot",
+    "browser",
+    "browser-detection",
+    "device",
+    "device-detector",
+    "device-recognition",
+    "mobile",
+    "mobile-detection",
+    "os",
+    "ua-parser-js",
+    "useragent",
+    "user-agent"
   ],
   "license": "MIT",
   "author": "",
