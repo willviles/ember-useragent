@@ -13,7 +13,7 @@ export function initialize(appInstance) {
     userAgent = window.navigator.userAgent;
   }
 
-  assert('No userAgent present in ember-useragent/instance-initializers/browser', userAgent);
+  assert('No userAgent present in ember-useragent/instance-initializers/ember-useragent', userAgent);
 
   setProperties(service, {
     _UAParser: new UAParser(userAgent),
@@ -24,5 +24,9 @@ export function initialize(appInstance) {
 
 export default {
   name: 'ember-useragent-browser',
-  initialize
+  initialize() {
+    if (typeof FastBoot === 'undefined') {
+      initialize(...arguments);
+    }
+  }
 };
