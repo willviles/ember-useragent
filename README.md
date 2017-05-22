@@ -46,7 +46,7 @@ The service exposes all of UAParser's functions, but also adds some properties f
 | isChrome  | isConsole | isWebKit | isAndroid |           |
 | isEdge    | isDesktop |          | isIOS     |           |
 | isFirefox | isMobile  |          | isLinux   |           |
-| isIe      | isTablet  |          | isMacOS   |           |
+| isIE      | isTablet  |          | isMacOS   |           |
 | isSafari  |           |          | isWindows |           |
 
 ### Injection
