@@ -44,10 +44,10 @@ The service exposes all of UAParser's functions, but also adds some properties f
 |-----------|-----------|----------|-----------|-----------|
 | info      | info      | info     | info      |           |
 | isChrome  | isConsole | isWebKit | isAndroid |           |
-| isFirefox | isDesktop |          | isIOS     |           |
-| isIE      | isMobile  |          | isLinux   |           |
-| isSafari  | isTablet  |          | isMacOS   |           |
-|           |           |          | isWindows |           |
+| isEdge    | isDesktop |          | isIOS     |           |
+| isFirefox | isMobile  |          | isLinux   |           |
+| isIe      | isTablet  |          | isMacOS   |           |
+| isSafari  |           |          | isWindows |           |
 
 ### Injection
 
