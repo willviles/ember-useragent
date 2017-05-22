@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { get, isEqual, setProperties } = Ember;
+const { get, isEqual, merge, setProperties } = Ember;
 
 export default Ember.Service.extend({
 
@@ -12,11 +12,12 @@ export default Ember.Service.extend({
     const engine = parser.getEngine();
     const os = parser.getOS();
 
-    setProperties(this, Ember.merge({
+    setProperties(this, merge({
 
       browser: {
         info: browser,
         isChrome: isEqual(browser.name, 'Chrome'),
+        isEdge: isEqual(browser.name, 'Edge'),
         isFirefox: isEqual(browser.name, 'Firefox'),
         isIE: isEqual(browser.name, 'IE') ||
               isEqual(browser.name, 'IE Mobile'),
