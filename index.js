@@ -1,11 +1,12 @@
 /* jshint node: true */
 'use strict';
 
+const BroccoliDebug = require('broccoli-debug');
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const VersionChecker = require('ember-cli-version-checker');
 const path = require('path');
-const map = require('broccoli-stew').map;
+const fastbootTransform = require('fastboot-transform');
 
 module.exports = {
   name: 'ember-useragent',
@@ -32,23 +33,31 @@ module.exports = {
   },
 
   treeForVendor(vendorTree) {
-    let trees = [];
+    let debugTree = BroccoliDebug.buildDebugCallback(this.name),
+        trees = [];
 
     if (vendorTree) {
-      trees.push(vendorTree);
+      trees.push(
+        debugTree(vendorTree, 'vendorTree')
+      );
     }
 
-    trees.push(moduleToFunnel('ua-parser-js'));
+    let js = fastbootTransform(
+      moduleToFunnel('ua-parser-js')
+    );
+
+    trees.push(
+      debugTree(js, 'js')
+    );
 
     return mergeTrees(trees);
   }
 };
 
-function moduleToFunnel(moduleName) {
-  let tree = new Funnel(resolveModulePath(moduleName), {
-    destDir: 'ua-parser-js'
+function moduleToFunnel(moduleName, destination) {
+  return new Funnel(resolveModulePath(moduleName), {
+    destDir: destination || moduleName
   });
-  return map(tree, (content) => `if (typeof FastBoot === 'undefined') { ${content} } else { define(function(){}); }`);
 }
 
 function resolveModulePath(moduleName) {
