@@ -1,6 +1,6 @@
 {
   "name": "ember-useragent",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An Ember addon for Fastboot-enabled userAgent parsing via UAParser.js.",
   "keywords": [
     "ember-addon",
