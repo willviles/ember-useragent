@@ -14,7 +14,9 @@ The `userAgent` service works in both browser & Fastboot environments and makes 
 
 ## Installation
 
-`ember install ember-useragent`
+```
+ember install ember-useragent
+```
 
 ### Requirements
 
