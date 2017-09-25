@@ -20,13 +20,9 @@ ember install ember-useragent
 
 ### Requirements
 
-**Ember CLI >=2.9.0**
-
-The shim for UAParser.js uses `app.import`'s new [AMD transformation](https://github.com/ember-cli/ember-cli/pull/5976) feature released in Ember CLI [2.9.0](https://github.com/ember-cli/ember-cli/blob/master/CHANGELOG.md#290).
-
 **Fastboot**
 
-Should you be using Fastboot in your application, Ember Useragent >=0.2.0 requires Ember CLI Fastboot >=1.0.0.
+Should you be using Fastboot in your application, Ember UserAgent >=0.2.0 requires Ember CLI Fastboot >=1.0.0.
 
 ## Usage
 
