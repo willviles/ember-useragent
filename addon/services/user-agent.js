@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import { get, observer, setProperties } from '@ember/object';
+import { assign } from '@ember/polyfills';
+import { isEqual } from '@ember/utils';
 
-const { get, isEqual, merge, setProperties } = Ember;
+export default Service.extend({
 
-export default Ember.Service.extend({
-
-  setupService: Ember.observer('_UAParser', function() {
+  setupService: observer('_UAParser', function() {
     const parser = get(this, '_UAParser');
 
     const browser = parser.getBrowser();
@@ -12,7 +13,7 @@ export default Ember.Service.extend({
     const engine = parser.getEngine();
     const os = parser.getOS();
 
-    setProperties(this, merge({
+    setProperties(this, assign({
 
       browser: {
         info: browser,

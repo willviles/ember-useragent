@@ -1,10 +1,9 @@
-/* jshint node: true */
+/* eslint-env node */
 'use strict';
 
 const BroccoliDebug = require('broccoli-debug');
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
-const VersionChecker = require('ember-cli-version-checker');
 const path = require('path');
 const fastbootTransform = require('fastboot-transform');
 
@@ -21,13 +20,12 @@ module.exports = {
       throw new Error('Application instance must be passed to import');
     }
 
-    // `using: []` syntax isavailable for Ember 2.9.0 and above only
-    new VersionChecker(this).for('ember-cli', 'npm').assertAbove('2.9.0');
+    app.import(this.treePaths.vendor + '/ua-parser-js/ua-parser.js');
 
-    app.import(this.treePaths.vendor + '/ua-parser-js/ua-parser.js', {
-      using: [
-        { transformation: 'amd', as: 'ua-parser-js' }
-      ]
+    app.import('vendor/ua-parser-shim.js', {
+      exports: {
+        ['ua-parser-js']: ['default']
+      }
     });
 
   },
