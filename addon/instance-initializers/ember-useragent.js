@@ -18,7 +18,7 @@ export function initialize(appInstance) {
         userAgent = window.navigator.userAgent;
       }
 
-      assert('No userAgent present in ember-useragent/instance-initializers/fastboot', userAgent);
+      assert('No userAgent present in ember-useragent/instance-initializers/ember-useragent (Browser)', userAgent);
 
       set(this, 'userAgent', userAgent);
 
@@ -38,8 +38,8 @@ export function initializeFastboot(appInstance) {
     _UAParser: computed(function() {
       let headers = get(this, 'fastboot.request.headers'),
           userAgent = headers.get('user-agent');
-          
-      assert('No userAgent present in ember-useragent/instance-initializers/fastboot', userAgent);
+
+      assert('No userAgent present in ember-useragent/instance-initializers/ember-useragent (Fastboot)', userAgent);
 
       set(this, 'userAgent', userAgent);
 
@@ -50,7 +50,7 @@ export function initializeFastboot(appInstance) {
 }
 
 export default {
-  name: 'ember-useragent-browser',
+  name: 'ember-useragent',
   initialize() {
     if (typeof FastBoot === 'undefined') {
       initialize(...arguments);
