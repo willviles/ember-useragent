@@ -1,9 +1,49 @@
+/* global FastBoot */
+
 import Service from '@ember/service';
-import { get, observer, setProperties } from '@ember/object';
+import { computed, get, observer, setProperties } from '@ember/object';
+import { readOnly } from '@ember/object/computed';
 import { assign } from '@ember/polyfills';
 import { isEqual } from '@ember/utils';
+import { assert } from '@ember/debug';
+import { getOwner } from '@ember/application';
+import UAParser from 'ua-parser-js';
 
 export default Service.extend({
+
+  fastboot: computed(function() {
+    return getOwner(this).lookup('service:fastboot');
+  }),
+
+  isFastBoot: readOnly('fastboot.isFastBoot'),
+
+  userAgent: computed(function() {
+    if (get(this, 'isFastBoot')) {
+      let headers = get(this, 'fastboot.request.headers');
+      let userAgent = headers.get('user-agent');
+
+      assert('No userAgent present in ember-useragent/services/user-agent (FastBoot)', userAgent);
+      return userAgent;
+    } else {
+      if (window && window.navigator) {
+        let userAgent = window.navigator.userAgent;
+
+        assert('No userAgent present in ember-useragent/services/user-agent (Browser)', userAgent);
+        return userAgent;
+      }
+    }
+  }),
+
+  _UAParser: computed('userAgent', function() {
+    let userAgent = get(this, 'userAgent');
+
+    if (get(this, 'isFastBoot')) {
+      let UAParser = FastBoot.require('ua-parser-js');
+      return new UAParser(userAgent);
+    }
+
+    return new UAParser(userAgent);
+  }),
 
   setupService: observer('_UAParser', function() {
     const parser = get(this, '_UAParser');
@@ -52,6 +92,11 @@ export default Service.extend({
 
     }, parser));
 
-  })
+  }),
+
+  init() {
+    this._super(...arguments);
+    this.setupService();
+  }
 
 });
