@@ -1,6 +1,6 @@
 {
   "name": "ember-useragent",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "An Ember addon for Fastboot-enabled userAgent parsing via UAParser.js.",
   "keywords": [
     "ember-addon",
@@ -18,12 +18,19 @@
     "user-agent"
   ],
   "license": "MIT",
-  "author": "Will Viles <will@vil.es>",
+  "author": {
+    "name": "Will Viles",
+    "email": "will@vil.es",
+    "url": "https://willviles.com"
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "https://github.com/willviles/ember-useragent",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/willviles/ember-useragent"
+  },
   "scripts": {
     "build": "ember build",
     "start": "ember server",
