@@ -34,7 +34,7 @@ export default Service.extend({
     }
   }),
 
-  _UAParser: computed('userAgent', function() {
+  UAParser: computed('userAgent', function() {
     let userAgent = get(this, 'userAgent');
 
     if (get(this, 'isFastBoot')) {
@@ -45,8 +45,8 @@ export default Service.extend({
     return new UAParser(userAgent);
   }),
 
-  setupService: observer('_UAParser', function() {
-    const parser = get(this, '_UAParser');
+  setupService: observer('UAParser', function() {
+    const parser = get(this, 'UAParser');
 
     const browser = parser.getBrowser();
     const device = parser.getDevice();
