@@ -21,8 +21,8 @@ module.exports = {
     }
 
     app.import(this.treePaths.vendor + '/ua-parser-js/ua-parser.js');
-
-    app.import('vendor/ua-parser-shim.js', {
+    
+    app.import('vendor/shims/ua-parser-js.js', {
       exports: {
         ['ua-parser-js']: ['default']
       }
