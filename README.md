@@ -51,6 +51,25 @@ The service exposes all of UAParser's functions, but also adds some properties f
 | isIE      | isTablet  |          | isMacOS   |           |
 | isSafari  |           |          | isWindows |           |
 
+### Manual Usage
+
+There aren't many use cases for using it manually, but Ember UserAgent shims UAParser.js into your application. Access it in one of two ways.
+
+Module import:
+
+```js
+import UAParser from 'ua-parser-js';
+```
+
+Or from the service:
+
+```js
+{
+  userAgent: service(),
+  UAParser: alias('userAgent.UAParser')
+}
+```
+
 ### Injection
 
 By default, this addon will generate an initializer in `app/initializers/user-agent.js` that injects the `userAgent` service app-wide. If the `userAgent` property conflicts with other addons or you wish to use manual injection (`Ember.service.inject`) you can override this file.
