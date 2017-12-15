@@ -1,4 +1,4 @@
-Ember UserAgent ![Download count all time](https://img.shields.io/npm/dt/ember-useragent.svg) [![npm](https://img.shields.io/npm/v/ember-useragent.svg)](https://www.npmjs.com/package/ember-useragent)
+Ember UserAgent [![Build Status](https://travis-ci.org/willviles/ember-useragent.svg)](https://travis-ci.org/willviles/ember-useragent) [![Ember Observer Score](http://emberobserver.com/badges/ember-useragent.svg)](http://emberobserver.com/addons/ember-useragent) ![Download count all time](https://img.shields.io/npm/dt/ember-useragent.svg) [![npm](https://img.shields.io/npm/v/ember-useragent.svg)](https://www.npmjs.com/package/ember-useragent)
 ======
 
 Ember UserAgent is an Ember Addon for UserAgent parsing via [UAParser.js](https://github.com/faisalman/ua-parser-js).
