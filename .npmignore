@@ -17,3 +17,8 @@ testem.js
 /DEBUG
 Icon^M^M
 Icon*
+
+# ember-try
+.node_modules.ember-try/
+bower.json.ember-try
+package.json.ember-try
