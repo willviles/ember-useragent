@@ -24,6 +24,16 @@ ember install ember-useragent
 
 Should you be using Fastboot in your application, Ember UserAgent >=0.2.0 requires Ember CLI Fastboot >=1.0.0.
 
+You must add `ua-parser-js` in your fastboot dependencies whitelist.
+
+```json
+// package.json
+...
+"fastbootDependencies": [
+  "ua-parser-js"
+],
+```
+
 ## Usage
 
 Ember UserAgent exposes a service, which is automatically injected into controllers, components and routes.
