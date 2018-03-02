@@ -34,6 +34,13 @@ const testDevices = [
     }
   },
   {
+    device: 'Chrome Headless',
+    ua: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome Safari/537.36',
+    assertions: {
+      'browser.isChromeHeadless': true
+    }
+  },
+  {
     device: 'Galaxy S5',
     ua: 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Mobile Safari/537.36',
     assertions: {

@@ -58,6 +58,7 @@ export default Service.extend({
       browser: {
         info: browser,
         isChrome: isEqual(browser.name, 'Chrome'),
+        isChromeHeadless: isEqual(browser.name, 'Chrome Headless'),
         isEdge: isEqual(browser.name, 'Edge'),
         isFirefox: isEqual(browser.name, 'Firefox'),
         isIE: isEqual(browser.name, 'IE') ||

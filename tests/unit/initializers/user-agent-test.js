@@ -1,10 +1,11 @@
-import Application from '@ember/application'
+import Application from '@ember/application';
 import { run } from '@ember/runloop';
+
 import { initialize } from 'dummy/initializers/user-agent';
 import { module, test } from 'qunit';
 import destroyApp from '../../helpers/destroy-app';
 
-module('Unit | Initializer | user agent', {
+module('Unit | Initializer | user-agent', {
   beforeEach() {
     run(() => {
       this.application = Application.create();
