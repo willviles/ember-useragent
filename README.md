@@ -12,7 +12,8 @@ The `userAgent` service works in both browser & Fastboot environments and makes 
 * **Layout Engine**
 * **CPU architecture**
 
-## Installation
+Installation
+------------------------------------------------------------------------------
 
 ```
 ember install ember-useragent

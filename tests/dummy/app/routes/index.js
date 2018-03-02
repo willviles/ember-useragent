@@ -1,14 +1,3 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-const { get, inject: { service } } = Ember;
-
-export default Ember.Route.extend({
-
-  userAgent: service(),
-
-  setupController(controller) {
-    controller.set('userAgent', get(this, 'userAgent'));
-
-  }
-
-});
+export default Route.extend({});
