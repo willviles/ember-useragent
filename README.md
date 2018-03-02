@@ -43,14 +43,15 @@ userAgent.getDevice(); // => { model: 'iPhone 7', type: 'mobile', vendor: 'Apple
 
 The service exposes all of UAParser's functions, but also adds some properties for quick access.
 
-| browser   | device    | engine   | os        | userAgent |
-|-----------|-----------|----------|-----------|-----------|
-| info      | info      | info     | info      |           |
-| isChrome  | isConsole | isWebKit | isAndroid |           |
-| isEdge    | isDesktop |          | isIOS     |           |
-| isFirefox | isMobile  |          | isLinux   |           |
-| isIE      | isTablet  |          | isMacOS   |           |
-| isSafari  |           |          | isWindows |           |
+| browser          | device    | engine   | os        | userAgent |
+|------------------|-----------|----------|-----------|-----------|
+| info             | info      | info     | info      |           |
+| isChrome         | isConsole | isWebKit | isAndroid |           |
+| isChromeHeadless | isDesktop |          | isIOS     |           |
+| isEdge           | isMobile  |          | isLinux   |           |
+| isFirefox        | isTablet  |          | isMacOS   |           |
+| isIE             |           |          | isWindows |           |
+| isSafari         |           |          | isWindows |           |
 
 ### Manual Usage
 
