@@ -84,11 +84,14 @@ export default Service.extend({
         info: os,
         isAndroid: isEqual(os.name, 'Android'),
         isIOS: isEqual(os.name, 'iOS'),
-        isLinux: isEqual(os.name, 'Linux'),
+        isLinux: [
+          'CentOS', 'Fedora', 'Linpus', 'Linux', 'MeeGo',
+          'PCLinuxOS', 'RedHat', 'SUSE', 'Ubuntu', 'VectorLinux'
+        ].includes(os.name),
         isMacOS: isEqual(os.name, 'Mac OS'),
-        isWindows: isEqual(os.name, 'Windows') ||
-                   isEqual(os.name, 'Windows Phone') ||
-                   isEqual(os.name, 'Windows Mobile')
+        isWindows: [
+          'Windows', 'Windows Phone', 'Windows Mobile'
+        ].includes(os.name)
       }
 
     }, parser));
