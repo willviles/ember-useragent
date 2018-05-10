@@ -87,11 +87,11 @@ export default Service.extend({
         isLinux: [
           'CentOS', 'Fedora', 'Linpus', 'Linux', 'MeeGo',
           'PCLinuxOS', 'RedHat', 'SUSE', 'Ubuntu', 'VectorLinux'
-        ].includes(os.name),
+        ].indexOf(os.name) > -1,
         isMacOS: isEqual(os.name, 'Mac OS'),
         isWindows: [
           'Windows', 'Windows Phone', 'Windows Mobile'
-        ].includes(os.name)
+        ].indexOf(os.name) > -1
       }
 
     }, parser));
