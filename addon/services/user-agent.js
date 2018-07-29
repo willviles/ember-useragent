@@ -1,106 +1,135 @@
-/* global FastBoot */
-
 import Service from '@ember/service';
-import { computed, get, observer, setProperties } from '@ember/object';
-import { readOnly } from '@ember/object/computed';
-import { assign } from '@ember/polyfills';
-import { isEqual } from '@ember/utils';
-import { assert } from '@ember/debug';
+import { computed, get, set } from '@ember/object';
 import { getOwner } from '@ember/application';
+import { deprecate } from '@ember/application/deprecations';
 import UAParser from 'ua-parser-js';
 
 export default Service.extend({
+  _parser: computed(() => new UAParser),
 
-  fastboot: computed(function() {
+  parser: computed('extensions', {
+    get() {
+      deprecate(
+        'Usage of the private property `parser` is deprecated. If you need to fiddle around with this private property, please open an issue and we can discuss.',
+        false,
+        { id: 'ember-useragent.service.parser', until: '1.0.0' }
+      );
+
+      return get(this, '_parser');
+    }
+  }).readOnly(),
+
+  UAParser: computed(function () {
+    deprecate(
+      'Usage of the property `UAParser` is deprecated. To get the UAParser class, import it as `import UAParser from \'ua-parser-js\';`. To get the instance of that class used by this service, as this property previously incorrectly returned, get the `parser` property.',
+      false,
+      { id: 'ember-useragent.service.UAParser', until: '1.0.0' }
+    );
+
+    return get(this, '_parser');
+  }),
+
+  userAgent: computed({
+    get() {
+      const parser = get(this, '_parser');
+      return parser.getUA();
+    },
+    set(key, value) {
+      const parser = get(this, '_parser');
+      parser.setUA(value);
+      set(this, '_parser', parser);
+
+      return value;
+    }
+  }),
+
+  fastboot: computed(function () {
+    deprecate(
+      'Usage of the private property `fastboot` is deprecated. Inject the `fastboot` service yourself instead.',
+      false,
+      { id: 'ember-useragent.service.fastboot', until: '1.0.0' }
+    );
+
     return getOwner(this).lookup('service:fastboot');
   }),
 
-  isFastBoot: readOnly('fastboot.isFastBoot'),
+  isFastBoot: computed(function () {
+    deprecate(
+      'Usage of the private property `isFastBoot` is deprecated. Inject the `fastboot` service yourself and get `fastboot.isFastBoot` instead.',
+      false,
+      { id: 'ember-useragent.service.isFastBoot', until: '1.0.0' }
+    );
 
-  userAgent: computed(function() {
-    if (get(this, 'isFastBoot')) {
-      let headers = get(this, 'fastboot.request.headers');
-      let userAgent = headers.get('user-agent');
-
-      assert('No userAgent present in ember-useragent/services/user-agent (FastBoot)', userAgent);
-      return userAgent;
-    } else {
-      if (window && window.navigator) {
-        let userAgent = window.navigator.userAgent;
-
-        assert('No userAgent present in ember-useragent/services/user-agent (Browser)', userAgent);
-        return userAgent;
-      }
-    }
+    const fastboot = getOwner(this).lookup('service:fastboot');
+    return Boolean(fastboot && get(fastboot, 'isFastBoot'));
   }),
 
-  UAParser: computed('userAgent', function() {
-    let userAgent = get(this, 'userAgent');
+  browser: computed('_parser', function() {
+    const browser = get(this, '_parser').getBrowser();
 
-    if (get(this, 'isFastBoot')) {
-      let UAParser = FastBoot.require('ua-parser-js');
-      return new UAParser(userAgent);
-    }
-
-    return new UAParser(userAgent);
+    return {
+      info: browser,
+      isChrome: browser.name === 'Chrome',
+      isChromeHeadless: browser.name === 'Chrome Headless',
+      isEdge: browser.name === 'Edge',
+      isFirefox: browser.name === 'Firefox',
+      isIE: browser.name === 'IE' ||
+            browser.name === 'IE Mobile',
+      isSafari: browser.name === 'Safari' ||
+                browser.name === 'Mobile Safari'
+    };
   }),
 
-  setupService: observer('UAParser', function() {
-    const parser = get(this, 'UAParser');
-
-    const browser = parser.getBrowser();
-    const device = parser.getDevice();
-    const engine = parser.getEngine();
-    const os = parser.getOS();
-
-    setProperties(this, assign({
-
-      browser: {
-        info: browser,
-        isChrome: isEqual(browser.name, 'Chrome'),
-        isChromeHeadless: isEqual(browser.name, 'Chrome Headless'),
-        isEdge: isEqual(browser.name, 'Edge'),
-        isFirefox: isEqual(browser.name, 'Firefox'),
-        isIE: isEqual(browser.name, 'IE') ||
-              isEqual(browser.name, 'IE Mobile'),
-        isSafari: isEqual(browser.name, 'Safari') ||
-                  isEqual(browser.name, 'Mobile Safari')
-      },
-
-      device: {
-        info: device,
-        isConsole: isEqual(device.type, 'console'),
-        isDesktop: !device.type,
-        isMobile: isEqual(device.type, 'mobile'),
-        isTablet: isEqual(device.type, 'tablet')
-      },
-
-      engine: {
-        info: engine,
-        isWebkit: isEqual(engine.name, 'WebKit')
-      },
-
-      os: {
-        info: os,
-        isAndroid: isEqual(os.name, 'Android'),
-        isIOS: isEqual(os.name, 'iOS'),
-        isLinux: [
-          'CentOS', 'Fedora', 'Linpus', 'Linux', 'MeeGo',
-          'PCLinuxOS', 'RedHat', 'SUSE', 'Ubuntu', 'VectorLinux'
-        ].indexOf(os.name) > -1,
-        isMacOS: isEqual(os.name, 'Mac OS'),
-        isWindows: [
-          'Windows', 'Windows Phone', 'Windows Mobile'
-        ].indexOf(os.name) > -1
-      }
-
-    }, parser));
-
+  cpu: computed('_parser', function() {
+    return get(this, '_parser').getCPU();
   }),
 
-  init() {
-    this._super(...arguments);
-    this.setupService();
+  device: computed('_parser', function() {
+    const device = get(this, '_parser').getDevice();
+
+    return {
+      info: device,
+      isConsole: device.type === 'console',
+      isDesktop: !device.type,
+      isMobile: device.type === 'mobile',
+      isTablet: device.type === 'tablet'
+    };
+  }),
+
+  engine: computed('_parser', function() {
+    const engine = get(this, '_parser').getEngine();
+
+    return {
+      info: engine,
+      isWebkit: engine.name === 'WebKit'
+    };
+  }),
+
+  os: computed('_parser', function() {
+    const os = get(this, '_parser').getOS();
+
+    return {
+      info: os,
+      isAndroid: os.name === 'Android',
+      isIOS: os.name === 'iOS',
+      isLinux: [
+        'CentOS', 'Fedora', 'Linpus', 'Linux', 'MeeGo',
+        'PCLinuxOS', 'RedHat', 'SUSE', 'Ubuntu', 'VectorLinux'
+      ].indexOf(os.name) > -1,
+      isMacOS: os.name === 'Mac OS',
+      isWindows: [
+        'Windows', 'Windows Phone', 'Windows Mobile'
+      ].indexOf(os.name) > -1
+    };
+  }),
+
+  setupService() {
+    deprecate(
+      'Usage of the private method `setupService` is deprecated. To force an update, set the `userAgent` property.',
+      false,
+      { id: 'ember-useragent.service.setupService', until: '1.0.0' }
+    );
+
+    this.notifyPropertyChange('userAgent');
   }
-
 });
