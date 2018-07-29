@@ -35,41 +35,34 @@ const userAgent = this.get('userAgent');
 userAgent.get('browser.isChrome'); // Boolean
 userAgent.get('engine.isWebKit'); // Boolean
 userAgent.get('os.info'); // => { name: 'Ubuntu', version: '11.10' }
-userAgent.getDevice(); // => { model: 'iPhone 7', type: 'mobile', vendor: 'Apple'}
-
+userAgent.get('device.info'); // => { model: 'iPhone 7', type: 'mobile', vendor: 'Apple'}
 ```
 
 ### Service Properties
 
 The service exposes all of UAParser's functions, but also adds some properties for quick access.
 
-| browser          | device    | engine   | os        | userAgent |
-|------------------|-----------|----------|-----------|-----------|
-| info             | info      | info     | info      |           |
-| isChrome         | isConsole | isWebKit | isAndroid |           |
-| isChromeHeadless | isDesktop |          | isIOS     |           |
-| isEdge           | isMobile  |          | isLinux   |           |
-| isFirefox        | isTablet  |          | isMacOS   |           |
-| isIE             |           |          | isWindows |           |
-| isSafari         |           |          | isWindows |           |
+| browser          | device    | engine   | os        | cpu          |
+|------------------|-----------|----------|-----------|--------------|
+| info             | info      | info     | info      | architecture |
+| isChrome         | isConsole | isWebKit | isAndroid |              |
+| isChromeHeadless | isDesktop |          | isIOS     |              |
+| isEdge           | isMobile  |          | isLinux   |              |
+| isFirefox        | isTablet  |          | isMacOS   |              |
+| isIE             |           |          | isWindows |              |
+| isSafari         |           |          | isWindows |              |
+
+The service also exposes the `userAgent` property, which contains the user agent string.
+You can overwrite this property, if you want to force a certain user agent string.
+All of the properties described above will update in accordance.
 
 ### Manual Usage
 
-There aren't many use cases for using it manually, but Ember UserAgent shims UAParser.js into your application. Access it in one of two ways.
-
-Module import:
+There aren't many use cases for using it manually, but Ember UserAgent shims UAParser.js into your application.
+You can import it like any other module:
 
 ```js
 import UAParser from 'ua-parser-js';
-```
-
-Or from the service:
-
-```js
-{
-  userAgent: service(),
-  UAParser: alias('userAgent.UAParser')
-}
 ```
 
 ### Injection
