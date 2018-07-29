@@ -39,11 +39,8 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "broccoli-debug": "^0.6.4",
-    "broccoli-funnel": "^2.0.1",
-    "broccoli-merge-trees": "^3.0.0",
     "ember-cli-babel": "^6.16.0",
-    "fastboot-transform": "^0.1.3",
+    "ember-cli-cjs-transform": "^1.3.0",
     "ua-parser-js": "^0.7.18"
   },
   "devDependencies": {
