@@ -14,9 +14,7 @@
 bower.json
 ember-cli-build.js
 testem.js
-/DEBUG
-Icon^M^M
-Icon*
+yarn.lock
 
 # ember-try
 .node_modules.ember-try/
