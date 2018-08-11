@@ -78,6 +78,9 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
+    "after": [
+      "ember-cli-cjs-transform"
+    ],
     "fastbootDependencies": [
       "ua-parser-js"
     ]
