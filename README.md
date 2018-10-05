@@ -21,7 +21,9 @@ ember install ember-useragent
 
 ## Usage
 
-Ember UserAgent exposes a service, which is automatically injected into controllers, components and routes.
+Ember UserAgent exposes a (1) service, which is automatically injected into controllers, components and routes, and a (2) helper.
+
+### Service
 
 ```javascript
 const userAgent = this.get('userAgent');
@@ -30,6 +32,14 @@ userAgent.get('browser.isChrome'); // Boolean
 userAgent.get('engine.isWebKit'); // Boolean
 userAgent.get('os.info'); // => { name: 'Ubuntu', version: '11.10' }
 userAgent.get('device.info'); // => { model: 'iPhone 7', type: 'mobile', vendor: 'Apple'}
+```
+
+### Helper
+
+```handlebars
+{{#if (user-agent "browser.isChrome")}}
+  Chrome, here...
+{{/if}}
 ```
 
 ### Service Properties
