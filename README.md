@@ -19,12 +19,6 @@ Installation
 ember install ember-useragent
 ```
 
-### Requirements
-
-**Fastboot**
-
-Should you be using Fastboot in your application, Ember UserAgent >=0.2.0 requires Ember CLI Fastboot >=1.0.0.
-
 ## Usage
 
 Ember UserAgent exposes a service, which is automatically injected into controllers, components and routes.
@@ -50,7 +44,7 @@ The service exposes all of UAParser's functions, but also adds some properties f
 | isEdge           | isMobile  |          | isLinux   |              |
 | isFirefox        | isTablet  |          | isMacOS   |              |
 | isIE             |           |          | isWindows |              |
-| isSafari         |           |          | isWindows |              |
+| isSafari         |           |          |           |              |
 
 The service also exposes the `userAgent` property, which contains the user agent string.
 You can overwrite this property, if you want to force a certain user agent string.
@@ -58,8 +52,7 @@ All of the properties described above will update in accordance.
 
 ### Manual Usage
 
-There aren't many use cases for using it manually, but Ember UserAgent shims UAParser.js into your application.
-You can import it like any other module:
+Ember UserAgent shims UAParser.js into your application. You can import it like any other module:
 
 ```js
 import UAParser from 'ua-parser-js';
