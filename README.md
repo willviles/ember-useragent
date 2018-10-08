@@ -21,7 +21,7 @@ ember install ember-useragent
 
 ## Usage
 
-Ember UserAgent exposes a (1) service, which is automatically injected into controllers, components and routes, and a (2) helper.
+Ember UserAgent exposes a (1) service, which is automatically injected into controllers, components and routes, and a (2) template helper.
 
 ### Service
 
