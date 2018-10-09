@@ -19,6 +19,16 @@ Installation
 ember install ember-useragent
 ```
 
+This also installs [`ember-cli-cjs-transform`](https://github.com/rwjblue/ember-cli-cjs-transform)
+for your app, since it is required. If you are upgrading or it's missing, just install it manually
+or run the `ember-usagent1 blueprint:
+
+```
+ember g ember-useragent
+```
+
+You can find more info in [issue #24](https://github.com/willviles/ember-useragent/issues/24).
+
 ## Usage
 
 Ember UserAgent exposes a (1) service, which is automatically injected into controllers, components and routes, and a (2) template helper.
