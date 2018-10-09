@@ -21,7 +21,7 @@ ember install ember-useragent
 
 This also installs [`ember-cli-cjs-transform`](https://github.com/rwjblue/ember-cli-cjs-transform)
 for your app, since it is required. If you are upgrading or it's missing, just install it manually
-or run the `ember-usagent1 blueprint:
+or run the `ember-useragent` blueprint:
 
 ```
 ember g ember-useragent
