@@ -4,7 +4,7 @@ module.exports = {
   name: 'ember-useragent',
 
   options: {
-    autoImport:{
+    autoImport: {
       exclude: ['ember-cli-babel']
     }
   }

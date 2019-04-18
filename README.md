@@ -12,6 +12,14 @@ The `userAgent` service works in both browser & Fastboot environments and makes 
 * **Layout Engine**
 * **CPU architecture**
 
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
+
 Installation
 ------------------------------------------------------------------------------
 
