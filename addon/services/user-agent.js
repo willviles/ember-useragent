@@ -5,7 +5,18 @@ import { deprecate } from '@ember/application/deprecations';
 import UAParser from 'ua-parser-js';
 
 export default Service.extend({
-  _parser: computed(() => new UAParser),
+  _parser: computed({
+    get() {
+      if (this.__parser) {
+        return this.__parser;
+      } else {
+        return new UAParser;
+      }
+    },
+    set(key, value) {
+      this.__parser = value;
+    }
+  }),
 
   parser: computed('extensions', {
     get() {
@@ -37,7 +48,7 @@ export default Service.extend({
     set(key, value) {
       const parser = get(this, '_parser');
       parser.setUA(value);
-      set(this, '_parser', parser);
+      set(this, '__parser', parser);
 
       return value;
     }
