@@ -83,9 +83,6 @@
     "edition": "octane"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config",
-    "fastbootDependencies": [
-      "ua-parser-js"
-    ]
+    "configPath": "tests/dummy/config"
   }
 }
