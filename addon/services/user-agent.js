@@ -15,6 +15,7 @@ export default Service.extend({
     },
     set(key, value) {
       this.__parser = value;
+      return this.__parser;
     }
   }),
 
