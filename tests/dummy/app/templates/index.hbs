@@ -1,17 +1,19 @@
-<h4>User Agent:</h4>
-{{this.userAgent.userAgent}}
+<dl>
+  <dt>User Agent:</dt>
+  <dd class="user-agent">{{this.userAgent.userAgent}}</dd>
 
-<h4>Browser:</h4>
-{{this.userAgent.browser.info.name}}
+  <dt>Browser:</dt>
+  <dd class="browser">{{this.userAgent.browser.info.name}}</dd>
 
-<h4>Device Type:</h4>
-{{if this.userAgent.device.info.type this.userAgent.device.device.info.type "Desktop"}}
+  <dt>Device Type:</dt>
+  <dd class="device-type">{{if this.userAgent.device.info.type this.device.device.info.type "Desktop"}}</dd>
 
-<h4>Device Model:</h4>
-{{this.userAgent.device.info.model}}
+  <dt>Device Model:</dt>
+  <dd class="device-model">{{this.userAgent.device.info.model}}</dd>
 
-<h4>Engine:</h4>
-{{this.userAgent.engine.info.name}}
+  <dt>Engine:</dt>
+  <dd class="engine">{{this.userAgent.engine.info.name}}</dd>
 
-<h4>OS:</h4>
-{{this.userAgent.os.info.name}}
+  <dt>OS:</dt>
+  <dd class="os">{{this.userAgent.os.info.name}}</dd>
+</dl>
