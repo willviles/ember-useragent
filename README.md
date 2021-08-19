@@ -30,9 +30,17 @@ ember install ember-useragent
 
 ## Usage
 
-Ember UserAgent exposes a (1) service, which is automatically injected into controllers, components and routes, and a (2) template helper.
+Ember UserAgent exposes a service and a template helper.
 
 ### Service
+
+```javascript
+import { inject as service } from '@ember/service';
+
+export default class FooComponent extends Component {
+  @service userAgent;
+}
+```
 
 ```javascript
 const userAgent = this.get('userAgent');
@@ -79,7 +87,7 @@ import UAParser from 'ua-parser-js';
 
 ### Injection
 
-By default, this addon will generate an initializer in `app/initializers/user-agent.js` that injects the `userAgent` service app-wide. If the `userAgent` property conflicts with other addons or you wish to use manual injection (`Ember.service.inject`) you can override this file.
+Prior to `0.11.0`, this addon generated an initializer in `app/initializers/user-agent.js` that injected the `userAgent` service across all controllers, components and routes. This does not happen in `>=0.11.0`.
 
 ## Using UAParser.js
 
