@@ -89,6 +89,8 @@ import UAParser from 'ua-parser-js';
 
 Prior to `0.11.0`, this addon generated an initializer in `app/initializers/user-agent.js` that injected the `userAgent` service across all controllers, components and routes. This does not happen in `>=0.11.0`.
 
+You can restore this behavior by manually performing these implicit injections (see [#42](https://github.com/willviles/ember-useragent/pull/42)), however this is highly discouraged, as this feature is deprecated by the upcoming Ember `v4.0`. If you were relying on these implicit injections, you should instead refactor your code to explicitly inject the `userAgent` service.
+
 ## Using UAParser.js
 
 For more information on how to use UAParser.js, please refer to the [documentation](https://github.com/faisalman/ua-parser-js#methods).
