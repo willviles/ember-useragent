@@ -43,7 +43,7 @@
     "ember-auto-import": "^1.5.3",
     "ember-cli-babel": "^7.13.0",
     "ember-cli-htmlbars": "^4.2.0",
-    "ua-parser-js": "^0.7.18"
+    "ua-parser-js": "^0.7.30"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.1.0",
