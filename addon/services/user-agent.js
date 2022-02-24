@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import { computed, get, set } from '@ember/object';
 import { getOwner } from '@ember/application';
-import { deprecate } from '@ember/application/deprecations';
+import { deprecate } from '@ember/debug';
 import UAParser from 'ua-parser-js';
 
 export default Service.extend({
